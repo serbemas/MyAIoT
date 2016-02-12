@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,5 +50,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    synchronized void imprimir(final String cad) {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                TextView ll = (TextView) findViewById(R.id.TextViewEstado);
+                ll.append(cad);
+                ScrollView ll1 = (ScrollView) findViewById(R.id.scrollView);
+                ll1.fullScroll(View.FOCUS_DOWN);
+            }});
     }
 }
